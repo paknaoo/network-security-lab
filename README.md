@@ -123,7 +123,7 @@ The following technologies are used throughout the project.
 This section will be updated as each phase is completed and validated.
 
 - [x] Phase 00 — Planning, architecture and threat model finalised.
-- [ ] Phase 01 — Suricata IDS deployment.
+- [x] Phase 01 — Suricata IDS deployment.
 - [ ] Phase 02 — Traffic analysis (tcpdump, Wireshark, PCAP, Hubble UI).
 - [ ] Phase 03 — Five detection scenarios with custom rules.
 - [ ] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
@@ -141,6 +141,7 @@ Phase 08 (SIEM) is deliberately skipped — see [Phase 00 — Planning](docs/pha
 Implementation details are organised by project phase. Phases are listed in planned order; only completed phases are linked.
 
 1. [Phase 00 — Planning](docs/phase-00-planning.md)
+2. [Phase 01 — Suricata IDS Deployment](docs/phase-01-suricata-deployment.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -154,13 +155,15 @@ Validation is grouped by phase and updated as each phase is completed.
 
 Phase 00 is planning and research only and is not subject to formal validation — see [Phase 00 — Planning](docs/phase-00-planning.md).
 
+**Phase 01 — Suricata IDS Deployment:** all criteria met — service active and stable, both `af-packet` interfaces (`ens33`, `ens34`) independently confirmed via packet counters and a controlled ICMP test, ET Open ruleset loaded (68,643 rules, 52,691 active), and pure IDS mode confirmed via engine logs. Full detail in [Phase 01](docs/phase-01-suricata-deployment.md#validation-results).
+
 Further phases will be added here as they are completed.
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phase 00 (planning, architecture and threat model) is complete; implementation begins with Phase 01.
+This project is **in progress**. Phase 00 (planning, architecture and threat model) and Phase 01 (Suricata IDS deployment) are complete; Phase 02 (traffic analysis) is next.
 
 ---
 

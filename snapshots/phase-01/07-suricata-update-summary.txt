@@ -1,0 +1,5 @@
+2/9/2026 -- 12:35:36 - <Info> -- Using data-directory /var/lib/suricata.
+2/9/2026 -- 12:35:36 - <Info> -- Using /usr/share/suricata/rules for Suricata provided rules.
+2/9/2026 -- 12:35:36 - <Info> -- Found Suricata version 8.0.6 at /usr/bin/suricata.
+2/9/2026 -- 12:35:36 - <Warning> -- Source index does not exist, will use bundled one.
+2/9/2026 -- 12:35:36 - <Warning> -- Please run suricata-update update-sources.

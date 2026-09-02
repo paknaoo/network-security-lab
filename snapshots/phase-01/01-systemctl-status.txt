@@ -1,0 +1,18 @@
+● suricata.service - Suricata IDS/IPS/NSM/FW daemon
+     Loaded: loaded (/usr/lib/systemd/system/suricata.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2026-09-02 11:53:34 UTC; 39min ago
+       Docs: man:suricata(8)
+             man:suricatasc(8)
+             https://suricata.io/documentation/
+    Process: 3361 ExecStartPre=/bin/rm -f /run/suricata.pid (code=exited, status=0/SUCCESS)
+   Main PID: 3364 (Suricata-Main)
+      Tasks: 10 (limit: 4543)
+     Memory: 439.5M (peak: 439.8M)
+        CPU: 31.491s
+     CGroup: /system.slice/suricata.service
+             └─3364 /usr/bin/suricata --af-packet -c /etc/suricata/suricata.yaml --pidfile /run/suricata.pid --user suricata --group suricata
+
+Sep 02 11:53:34 suricata systemd[1]: Starting suricata.service - Suricata IDS/IPS/NSM/FW daemon...
+Sep 02 11:53:34 suricata systemd[1]: Started suricata.service - Suricata IDS/IPS/NSM/FW daemon.
+Sep 02 11:53:34 suricata suricata[3364]: i: suricata: This is Suricata version 8.0.6 RELEASE running in SYSTEM mode
+Sep 02 11:53:48 suricata suricata[3364]: i: threads: Threads created -> W: 4 FM: 1 FR: 1   Engine started.
