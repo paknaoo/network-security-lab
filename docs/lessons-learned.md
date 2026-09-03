@@ -28,7 +28,19 @@ Entries are added as the corresponding phase is completed — this file has no f
 
 **What the exercise revealed:** two separate issues. First, a promiscuous tap on a shared segment (`ens33` on VMnet11 OUTSIDE) captures all traffic on that segment, not just the traffic of interest — ambient traffic from other hosts will appear in the same log unless explicitly filtered out. Second, Suricata does not write an event to `eve.json` immediately per packet — it groups traffic into a "flow" and writes the event only once that flow closes or times out, which for a short ICMP exchange introduced a multi-minute gap between the actual ping and the corresponding log line.
 
-**Takeway:** Suricata's `eve.json` is not a real-time, per-packet feed — it's largely flow-oriented, so a flow event is written only after the flow closes or times out, and its `timestamp` reflects when the record was written, not when the traffic happened. For accurate evidence or time correlation, I look at the flow's own `flow.start`/`flow.end` fields rather than the top-level `timestamp`. Separately, on a promiscuous tap covering a shared segment, I isolate the traffic of interest — by noting a log offset before the test and filtering by protocol/host afterwards — rather than assuming every logged event belongs to my test.
+**Interview-ready explanation:** Suricata's `eve.json` is not a real-time, per-packet feed — it's largely flow-oriented, so a flow event is written only after the flow closes or times out, and its `timestamp` reflects when the record was written, not when the traffic happened. For accurate evidence or time correlation, I look at the flow's own `flow.start`/`flow.end` fields rather than the top-level `timestamp`. Separately, on a promiscuous tap covering a shared segment, I isolate the traffic of interest — by noting a log offset before the test and filtering by protocol/host afterwards — rather than assuming every logged event belongs to my test.
+
+---
+
+## Levels of Network Traffic Opacity for a Packet-Inspection-Based IDS
+
+**Phase:** Phase 02 — Traffic Analysis
+
+**What was previously unclear:** whether "the IDS can't see VXLAN traffic" and "the IDS can't see WireGuard traffic" are the same problem, and whether Hubble, as an identity-aware tool, has full visibility into everything happening in the environment.
+
+**What the exercise revealed:** three parallel tests (plaintext ICMP, VXLAN encapsulation, WireGuard encapsulation-plus-encryption) revealed three qualitatively different levels of opacity for the same Suricata engine on the same two interfaces. Encapsulation without encryption (VXLAN) hides content only from a tool that doesn't perform explicit decapsulation — the data is there, it just has to be deliberately extracted. Encryption (WireGuard) removes that possibility entirely, regardless of tooling. Separately, Hubble — despite full, identity-aware visibility within Cilium's own scope — has an entirely different kind of limitation: it cannot see host-to-host traffic (for example, administrative SSH to the node itself), because that traffic never passes through its observation point (the eBPF datapath for pod endpoints).
+
+**Takeaway:** Limited IDS visibility is not one phenomenon. Encapsulation hides content behind a missing decapsulation step (recoverable with extra analytical work), encryption hides it irrecoverably, and the difference in observation scope between Hubble and Suricata comes down to each tool observing a different slice of the architecture — Cilium/eBPF for pods, af-packet for physical segments.
 ---
 
 <!--
