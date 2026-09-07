@@ -1,0 +1,52 @@
+# Nmap 7.94SVN scan initiated Fri Sep  4 12:51:41 2026 as: nmap -sS -Pn -p 22,80,443,6443,10250 -T4 -oN /home/adam/scan-syn-02.txt 10.10.10.20 10.10.10.21 10.10.10.22 10.10.10.200 10.10.10.254
+Nmap scan report for 10.10.10.20
+Host is up.
+
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    filtered http
+443/tcp   filtered https
+6443/tcp  filtered sun-sr-https
+10250/tcp filtered unknown
+
+Nmap scan report for 10.10.10.21
+Host is up.
+
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    filtered http
+443/tcp   filtered https
+6443/tcp  filtered sun-sr-https
+10250/tcp filtered unknown
+
+Nmap scan report for 10.10.10.22
+Host is up.
+
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    filtered http
+443/tcp   filtered https
+6443/tcp  filtered sun-sr-https
+10250/tcp filtered unknown
+
+Nmap scan report for 10.10.10.200
+Host is up.
+
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    filtered http
+443/tcp   filtered https
+6443/tcp  filtered sun-sr-https
+10250/tcp filtered unknown
+
+Nmap scan report for 10.10.10.254
+Host is up.
+
+PORT      STATE    SERVICE
+22/tcp    filtered ssh
+80/tcp    filtered http
+443/tcp   filtered https
+6443/tcp  filtered sun-sr-https
+10250/tcp filtered unknown
+
+# Nmap done at Fri Sep  4 12:51:58 2026 -- 5 IP addresses (5 hosts up) scanned in 17.07 seconds

@@ -1,6 +1,6 @@
 # Lessons Learned
 
-This document captures per-concept takeaways as they are encountered throughout the project. Each entry follows the same structure: what was previously unclear, what the exercise revealed, and a concise explanation.
+This document captures interview-ready, per-concept takeaways as they are encountered throughout the project. Each entry follows the same structure: what was previously unclear, what the exercise revealed, and a concise, interview-ready explanation.
 
 Entries are added as the corresponding phase is completed — this file has no fixed table of contents in advance, since the concepts worth recording only become clear once the work is done.
 
@@ -41,6 +41,18 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise revealed:** three parallel tests (plaintext ICMP, VXLAN encapsulation, WireGuard encapsulation-plus-encryption) revealed three qualitatively different levels of opacity for the same Suricata engine on the same two interfaces. Encapsulation without encryption (VXLAN) hides content only from a tool that doesn't perform explicit decapsulation — the data is there, it just has to be deliberately extracted. Encryption (WireGuard) removes that possibility entirely, regardless of tooling. Separately, Hubble — despite full, identity-aware visibility within Cilium's own scope — has an entirely different kind of limitation: it cannot see host-to-host traffic (for example, administrative SSH to the node itself), because that traffic never passes through its observation point (the eBPF datapath for pod endpoints).
 
 **Takeaway:** Limited IDS visibility is not one phenomenon. Encapsulation hides content behind a missing decapsulation step (recoverable with extra analytical work), encryption hides it irrecoverably, and the difference in observation scope between Hubble and Suricata comes down to each tool observing a different slice of the architecture — Cilium/eBPF for pods, af-packet for physical segments.
+
+---
+
+## The `HOME_NET` Definition Determines the Effectiveness of the Entire Ruleset, Not Just Custom Rules
+
+**Phase:** Phase 03 — Five Detection Scenarios (Scenario 1: Port Scan)
+
+**What was previously unclear:** whether a broad, "safe-looking" `HOME_NET` definition (covering the entire RFC1918 private address space) is neutral to Suricata's operation, or has a real effect on detection effectiveness.
+
+**What the exercise revealed:** with `HOME_NET` covering both the attacker segment and the protected LAN, reconnaissance traffic was classified as "internal" (`HOME_NET → HOME_NET`), which meant a significant portion of ET Open signatures built on the `$EXTERNAL_NET -> $HOME_NET` pattern could not match this traffic at all — even though the engine technically saw every packet. Narrowing `HOME_NET` to the actually protected network immediately and measurably increased detection coverage, confirmed by a custom rule and an existing ET Open signature both firing on the same test traffic.
+
+**Takeaway:** `HOME_NET`/`EXTERNAL_NET` are not just a documentation-level declaration of topology — they are an active parameter that determines which rules can match at all. These variables need to be set to reflect the network's actual trust model, not left at their defaults.
 ---
 
 <!--
