@@ -53,6 +53,18 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise revealed:** with `HOME_NET` covering both the attacker segment and the protected LAN, reconnaissance traffic was classified as "internal" (`HOME_NET → HOME_NET`), which meant a significant portion of ET Open signatures built on the `$EXTERNAL_NET -> $HOME_NET` pattern could not match this traffic at all — even though the engine technically saw every packet. Narrowing `HOME_NET` to the actually protected network immediately and measurably increased detection coverage, confirmed by a custom rule and an existing ET Open signature both firing on the same test traffic.
 
 **Takeaway:** `HOME_NET`/`EXTERNAL_NET` are not just a documentation-level declaration of topology — they are an active parameter that determines which rules can match at all. These variables need to be set to reflect the network's actual trust model, not left at their defaults.
+
+---
+
+## Client-Side and Intermediary Tools Can "Clean Up" Attack Traffic Before It Reaches the Network
+
+**Phase:** Phase 03 — Five Detection Scenarios (Scenarios 2, 3 and 5)
+
+**What was previously unclear:** whether issuing a command that contains an attack pattern (for example, `../` in a URL, a query to `.local`) guarantees that exact pattern actually appears on the wire.
+
+**What the exercise revealed:** three separate times in this phase, an intermediary tool altered the intended payload before it was sent — `curl` normalised `../` in the URL, `systemd-resolved` intercepted `.local` locally via mDNS, and `CiliumNetworkPolicy` defaulted its selector scope to its own namespace, contrary to an intuitive reading of the rule. In each case, only direct PCAP inspection or an explicit override (`--path-as-is`, changing the TLD, an explicit namespace selector) revealed the actual behaviour.
+
+**Takeaway:** writing and testing detection rules requires a standing habit of verifying at the raw-traffic level (PCAP, `tcpdump -A`) rather than trusting what a command was intended to do — client tools, resolvers, and policy engines have their own, sometimes non-obvious normalising or scoping behaviour that can silently invalidate a test's assumptions.
 ---
 
 <!--

@@ -125,7 +125,7 @@ This section will be updated as each phase is completed and validated.
 - [x] Phase 00 — Planning, architecture and threat model finalised.
 - [x] Phase 01 — Suricata IDS deployment.
 - [x] Phase 02 — Traffic analysis (tcpdump, Wireshark, PCAP, Hubble UI).
-- [ ] Phase 03 — Five detection scenarios with custom rules.
+- [x] Phase 03 — Five detection scenarios with custom rules.
 - [ ] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
 - [ ] Phase 05 — Multi-event manual timeline reconstruction.
 - [ ] Phase 06 — Full incident investigations, including a false positive.
@@ -143,6 +143,7 @@ Implementation details are organised by project phase. Phases are listed in plan
 1. [Phase 00 — Planning](docs/phase-00-planning.md)
 2. [Phase 01 — Suricata IDS Deployment](docs/phase-01-suricata-deployment.md)
 3. [Phase 02 — Traffic Analysis](docs/phase-02-traffic-analysis.md)
+4. [Phase 03 — Five Detection Scenarios](docs/phase-03-detection-scenarios.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -160,13 +161,15 @@ Phase 00 is planning and research only and is not subject to formal validation �
 
 **Phase 02 — Traffic Analysis:** all criteria met — PCAP captured and correctly interpreted on both taps across three scenarios (plaintext, VXLAN-encapsulated, WireGuard-encrypted), Hubble confirmed showing the same class of traffic with full pod identity, and a concrete, three-level visibility difference documented between Suricata's two taps and Hubble. Full detail in [Phase 02](docs/phase-02-traffic-analysis.md#validation-results).
 
+**Phase 03 — Five Detection Scenarios:** all criteria met — six custom Suricata signatures across port scan, HTTP recon/attack, and DNS-tunneling detection, each with correct alert metadata; narrowing `HOME_NET` independently confirmed to unblock multiple ET Open signatures; full 5-tuple/timestamp correlation between pfSense and Suricata for a blocked north-south attempt; and a Hubble-based verdict correlation for a blocked lateral-movement attempt, contrasted against a permitted connection from a trusted pod. Full detail in [Phase 03](docs/phase-03-detection-scenarios.md#overall-validation-summary).
+
 Further phases will be added here as they are completed.
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phases 00–02 (planning, Suricata deployment, and traffic analysis) are complete; Phase 03 (five detection scenarios) is next.
+This project is **in progress**. Phases 00–03 (planning, Suricata deployment, traffic analysis, and five detection scenarios) are complete; Phase 04 (evidence correlation) is next.
 
 ---
 
