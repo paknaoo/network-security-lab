@@ -77,6 +77,28 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise revealed:** a `NodeNotReady` episode on `k8s-worker2` (likely related to the host's limited RAM headroom, already noted in the Phase 00 resource budget) triggered a `TaintManagerEviction` for all three test pods in this phase. The node returned to full health, but the pods themselves — created as bare `Pod`s, not a `Deployment` — were never recreated automatically, since nothing in Kubernetes itself enforces that without a controller watching for the desired state.
 
 **Takeaway:** a `Deployment`/`ReplicaSet` provides self-healing after a node failure; a bare `Pod` has no such guarantee — the choice between them isn't just a manifest-style preference, it's a deliberate decision about a workload's resilience to infrastructure events, one that matters even in a test/lab environment.
+
+---
+
+## Distinguishing Signal from Noise in Logs Requires External Context, Not Just Alert Content
+
+**Phase:** Phase 05 — Log Correlation, Manual Timeline Reconstruction
+
+**What was previously unclear:** whether the mere presence of an alert in a log is enough to classify it as a security event, and whether diagnosing an infrastructure fault and investigating an attack can be treated as independent processes.
+
+**What the exercise revealed:** 10 of 49 alerts in this session (the custom port-scan threshold rule) were generated not by a deliberate attack but by SYN retransmissions produced while diagnosing an unrelated infrastructure problem — distinguishing this from Event 1 (a genuine port scan) was only possible thanks to external timestamp notes, not by analysing the alert content itself. In addition, a genuine infrastructure fault (a lost L2 Announcement lease) and a genuine configuration error (a conflict between two policies) occurred close together in time, which briefly led to an incorrect causal hypothesis.
+
+**Takeaway:** threshold rules, without additional operational context, generate false alarms for any repeating network activity, regardless of intent — an analyst has to systematically test and rule out hypotheses one at a time, rather than stopping at the first plausible one, when two independent events overlap in time.
+
+---
+
+## Manual Log Correlation Is Error-Prone at Higher Data Volumes
+
+**Phase:** Phase 05 — Log Correlation, Manual Timeline Reconstruction
+
+**What the exercise additionally revealed:** a first draft of the Phase 05 alert table contained six incorrect counts, despite a correct methodology (`grep`, manual review) — the errors came from the act of manually counting many similar, densely packed JSON lines, not from a flawed approach. Only a programmatic recount (`python3` + `Counter`) across all four evidence files revealed the discrepancies.
+
+**Takeaway:** this is a direct, tangible demonstration of the point raised in Phase 00 about the value of correlation-automating tooling at scale — it applies not only to the volume of logs, but to the reliability of the manual analytical process itself.
 ---
 
 <!--
