@@ -126,7 +126,7 @@ This section will be updated as each phase is completed and validated.
 - [x] Phase 01 — Suricata IDS deployment.
 - [x] Phase 02 — Traffic analysis (tcpdump, Wireshark, PCAP, Hubble UI).
 - [x] Phase 03 — Five detection scenarios with custom rules.
-- [ ] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
+- [x] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
 - [ ] Phase 05 — Multi-event manual timeline reconstruction.
 - [ ] Phase 06 — Full incident investigations, including a false positive.
 - [ ] Phase 07 — IDS → IPS transition with rule tuning.
@@ -144,6 +144,7 @@ Implementation details are organised by project phase. Phases are listed in plan
 2. [Phase 01 — Suricata IDS Deployment](docs/phase-01-suricata-deployment.md)
 3. [Phase 02 — Traffic Analysis](docs/phase-02-traffic-analysis.md)
 4. [Phase 03 — Five Detection Scenarios](docs/phase-03-detection-scenarios.md)
+5. [Phase 04 — Evidence Correlation](docs/phase-04-evidence-correlation.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -163,13 +164,15 @@ Phase 00 is planning and research only and is not subject to formal validation �
 
 **Phase 03 — Five Detection Scenarios:** all criteria met — six custom Suricata signatures across port scan, HTTP recon/attack, and DNS-tunneling detection, each with correct alert metadata; narrowing `HOME_NET` independently confirmed to unblock multiple ET Open signatures; full 5-tuple/timestamp correlation between pfSense and Suricata for a blocked north-south attempt; and a Hubble-based verdict correlation for a blocked lateral-movement attempt, contrasted against a permitted connection from a trusted pod. Full detail in [Phase 03](docs/phase-03-detection-scenarios.md#overall-validation-summary).
 
+**Phase 04 — Evidence Correlation:** all criteria met, extended to two scenarios instead of one — a second-level timeline reconstruction correlating pfSense's `filterlog` with Suricata's `eve.json` for a north-south block, a microsecond-level Hubble-based reconstruction for an east-west CiliumNetworkPolicy block (with Suricata's VXLAN tap as supplementary, non-attributable volume evidence), and a visibility matrix documenting which evidence source has insight into which traffic type, and why. Full detail in [Phase 04](docs/phase-04-evidence-correlation.md#validation-results).
+
 Further phases will be added here as they are completed.
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phases 00–03 (planning, Suricata deployment, traffic analysis, and five detection scenarios) are complete; Phase 04 (evidence correlation) is next.
+This project is **in progress**. Phases 00–04 (planning, Suricata deployment, traffic analysis, five detection scenarios, and evidence correlation) are complete; Phase 05 (multi-event timeline reconstruction) is next.
 
 ---
 

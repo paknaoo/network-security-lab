@@ -65,6 +65,18 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise revealed:** three separate times in this phase, an intermediary tool altered the intended payload before it was sent — `curl` normalised `../` in the URL, `systemd-resolved` intercepted `.local` locally via mDNS, and `CiliumNetworkPolicy` defaulted its selector scope to its own namespace, contrary to an intuitive reading of the rule. In each case, only direct PCAP inspection or an explicit override (`--path-as-is`, changing the TLD, an explicit namespace selector) revealed the actual behaviour.
 
 **Takeaway:** writing and testing detection rules requires a standing habit of verifying at the raw-traffic level (PCAP, `tcpdump -A`) rather than trusting what a command was intended to do — client tools, resolvers, and policy engines have their own, sometimes non-obvious normalising or scoping behaviour that can silently invalidate a test's assumptions.
+
+---
+
+## Bare `Pod`s Have No Resilience to Transient Node Unavailability
+
+**Phase:** Phase 04 — Evidence Correlation
+
+**What was previously unclear:** whether brief worker unavailability (for example, a momentary host resource crunch) has lasting consequences for test workloads in the cluster.
+
+**What the exercise revealed:** a `NodeNotReady` episode on `k8s-worker2` (likely related to the host's limited RAM headroom, already noted in the Phase 00 resource budget) triggered a `TaintManagerEviction` for all three test pods in this phase. The node returned to full health, but the pods themselves — created as bare `Pod`s, not a `Deployment` — were never recreated automatically, since nothing in Kubernetes itself enforces that without a controller watching for the desired state.
+
+**Takeaway:** a `Deployment`/`ReplicaSet` provides self-healing after a node failure; a bare `Pod` has no such guarantee — the choice between them isn't just a manifest-style preference, it's a deliberate decision about a workload's resilience to infrastructure events, one that matters even in a test/lab environment.
 ---
 
 <!--
