@@ -99,6 +99,18 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise additionally revealed:** a first draft of the Phase 05 alert table contained six incorrect counts, despite a correct methodology (`grep`, manual review) — the errors came from the act of manually counting many similar, densely packed JSON lines, not from a flawed approach. Only a programmatic recount (`python3` + `Counter`) across all four evidence files revealed the discrepancies.
 
 **Takeaway:** this is a direct, tangible demonstration of the point raised in Phase 00 about the value of correlation-automating tooling at scale — it applies not only to the volume of logs, but to the reliability of the manual analytical process itself.
+
+---
+
+## Threshold Rules Without Destination-Diversity Awareness Confuse One Connection's Retransmissions with a Scan
+
+**Phase:** Phase 06 — Full Incident Investigations (Case 3: false-positive tuning)
+
+**What was previously unclear:** why a rule intended to detect a port scan generated false positives on single, legitimate connections, and whether simply raising the threshold would suffice.
+
+**What the exercise revealed:** the cause was not too low a threshold value, but the counting logic itself — `flow:stateless` counted a single stalled connection's SYN retransmissions as separate hits, and `track by_src` did not distinguish many targets (a scan) from one target many times (retransmissions). A genuine scan and a blocked connection looked identical to a rule that only looked at the packet count from a single source. The fix (flow context + a narrower window) eliminated the dominant source of FPs, but did not add structural destination-diversity awareness — the remaining gap (a low-and-slow scan) was named explicitly and deferred to a separate, complementary rule rather than hidden.
+
+**Takeaway:** a threshold rule's false alarm is most often a problem of matching logic (what is counted, and in what context), not of the threshold value itself — and honest tuning names the remaining gaps rather than pretending one change solves everything.
 ---
 
 <!--

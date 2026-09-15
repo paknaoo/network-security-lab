@@ -128,7 +128,7 @@ This section will be updated as each phase is completed and validated.
 - [x] Phase 03 — Five detection scenarios with custom rules.
 - [x] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
 - [x] Phase 05 — Multi-event manual timeline reconstruction.
-- [ ] Phase 06 — Full incident investigations, including a false positive.
+- [x] Phase 06 — Full incident investigations, including a false positive.
 - [ ] Phase 07 — IDS → IPS transition with rule tuning.
 - [ ] Phase 09 — Final validation, architecture diagram, README, CV talking points.
 
@@ -146,6 +146,10 @@ Implementation details are organised by project phase. Phases are listed in plan
 4. [Phase 03 — Five Detection Scenarios](docs/phase-03-detection-scenarios.md)
 5. [Phase 04 — Evidence Correlation](docs/phase-04-evidence-correlation.md)
 6. [Phase 05 — Log Correlation, Manual Timeline Reconstruction](docs/phase-05-log-correlation.md)
+7. [Phase 06 — Full Incident Investigations](docs/phase-06-incident-investigations.md)
+   - [Case 1 — Multi-Stage Reconnaissance and Access Attempt](docs/incident-reports/case-01-multistage-recon.md)
+   - [Case 2 — DNS Exfiltration Pattern and Lateral Movement](docs/incident-reports/case-02-dns-lateral.md)
+   - [Case 3 — False Positive Analysis and Rule Tuning](docs/incident-reports/case-03-false-positive-tuning.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -169,13 +173,15 @@ Phase 00 is planning and research only and is not subject to formal validation �
 
 **Phase 05 — Log Correlation, Manual Timeline Reconstruction:** all criteria met — five events reconstructed into a single chronology across a 57-minute window, spanning all four evidence sources, with 11 of 49 Suricata alerts (~22%) explicitly identified and documented as noise from an unrelated, concurrent infrastructure incident, and the time/effort of manual correlation documented (100+ minutes, nearly half spent on the side incident) as a reference point for the value of SIEM at scale. Full detail in [Phase 05](docs/phase-05-log-correlation.md#validation-results).
 
+**Phase 06 — Full Incident Investigations:** all criteria met — two SOC/IR-style incident reports (multi-stage recon/access, and DNS exfiltration pattern + lateral movement), each applying a three-tier Observed/Assessed/Not-observed confidence discipline with an explicit attempted-vs-successful distinction; plus a full false-positive tuning cycle on `sid:9000001` (root cause → `rev:2` fix → live validation confirming the genuine scan still alerts while the blocked-connection false positive is eliminated). Full detail in [Phase 06](docs/phase-06-incident-investigations.md#validation-results).
+
 Further phases will be added here as they are completed.
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phases 00–05 (planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, and multi-event timeline reconstruction) are complete; Phase 06 (full incident investigations) is next.
+This project is **in progress**. Phases 00–06 (planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, multi-event timeline reconstruction, and full incident investigations) are complete; Phase 07 (IDS → IPS transition) is next.
 
 ---
 
