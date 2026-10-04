@@ -123,7 +123,7 @@ Suricata listens on two independent interfaces of a single engine (af-packet, mu
 | `eth0`    | VMnet11 OUTSIDE | `192.168.50.30` | Traffic *before* the pfSense decision — all attempts, including blocked ones | Does not see traffic purely internal to the LAN (east-west)                                           |
 | `eth1`    | VMnet10 LAN     | `10.10.10.30`   | Traffic actually permitted by pfSense, plus node-to-node traffic             | Cross-node pod-to-pod traffic is encapsulated in VXLAN (UDP/8472) — Suricata sees the envelope, not the L7 payload, without additional decapsulation |
 
-**Rationale:** a single tap (LAN only) would not allow correlating a Suricata alert with a pfSense block log, because a blocked packet never reaches the LAN segment. Two taps allow demonstrating the difference between "IDS in front of the firewall" (full visibility of attempts) and "IDS behind the firewall" (visibility of outcomes only) — a classic sensor-placement design discussion topic for interviews.
+**Rationale:** a single tap (LAN only) would not allow correlating a Suricata alert with a pfSense block log, because a blocked packet never reaches the LAN segment. Two taps allow demonstrating the difference between "IDS in front of the firewall" (full visibility of attempts) and "IDS behind the firewall" (visibility of outcomes only) — a classic sensor-placement design discussion.
 
 **Operating mode:** pure IDS (listen + alert) in Phases 01–06. Transition to IPS (inline blocking) only in Phase 07, as a deliberately separate stage.
 
@@ -259,15 +259,11 @@ Phase 00 (this document) is not subject to formal validation — it is planning/
 - Reference legitimate traffic from Phase 02 still passes without disruption after switching to IPS (regression checked).
 - Documented criteria for the "this rule → drop, that rule → alert only" decision.
 
-### Phase 08 — Skipped
-
-SIEM (Wazuh) was deliberately excluded from scope due to host RAM budget constraints — see [Project Goal and Relationship to k8s-cilium-lab](#project-goal-and-relationship-to-k8s-cilium-lab) above.
-
-### Phase 09 — Final Validation, Architecture Diagram, README, CV Talking Points
+### Phase 08 — Final Validation, Architecture Diagram, README, CV Talking Points
 
 **Goal:** close out the repository as a coherent, portfolio-ready project.
 
-**Scope:** full re-validation of all previous phases (analogous to `make validate` in `k8s-cilium-lab`, if a similar aggregate script is warranted), final architecture diagram, README modelled on `k8s-cilium-lab`, a section with CV/interview talking points.
+**Scope:** full re-validation of all previous phases (analogous to `make validate` in `k8s-cilium-lab`, if a similar aggregate script is warranted), final architecture diagram, README modelled on `k8s-cilium-lab`, a section with CV talking points.
 
 **Validation criteria:**
 

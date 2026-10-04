@@ -1,0 +1,114 @@
+10/04/2026-20:39:03.088299  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.090323  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.090419  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.090419  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.301764  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.301764  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.509773  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.509773  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.917768  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:03.917768  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:04.790053  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:04.790053  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.094541  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.095041  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.095041  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.301642  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.301642  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.710261  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:06.710261  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:07.541808  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:07.541808  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:09.205568  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:09.205568  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:12.470043  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:12.470043  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:16.530903  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:39184 -> 192.168.50.30:9999
+10/04/2026-20:39:16.531496  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:39184 -> 192.168.50.30:9999
+10/04/2026-20:39:16.531665  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:39184 -> 192.168.50.30:9999
+10/04/2026-20:39:19.190468  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:19.190468  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:19.534914  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:39184 -> 192.168.50.30:9999
+10/04/2026-20:39:32.501911  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:32.501911  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:58.614028  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:39:58.614028  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:10.024500  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:10.231043  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:10.438937  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:10.847005  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:11.703580  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:13.366894  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:16.630836  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:23.350899  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:36.663508  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:44:42.469336  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.470147  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.470330  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.470330  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.677913  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.677913  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.885671  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:42.885671  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:43.302470  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:43.302470  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:44.181960  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:44.181960  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:45.473584  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:45.474200  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:45.474200  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:45.475720  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47682 -> 192.168.50.30:9999
+10/04/2026-20:44:45.476059  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47682 -> 192.168.50.30:9999
+10/04/2026-20:44:45.476143  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47682 -> 192.168.50.30:9999
+10/04/2026-20:44:45.678034  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:45.678034  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:46.086012  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:46.086012  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:46.933600  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:46.933600  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:48.479534  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47682 -> 192.168.50.30:9999
+10/04/2026-20:44:48.597894  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:48.597894  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:51.862232  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:51.862232  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:58.646864  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:44:58.646864  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:45:02.776430  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:51262 -> 192.168.50.30:9999
+10/04/2026-20:45:11.957848  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:45:11.957848  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:45:38.069837  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:45:38.069837  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:47666 -> 192.168.50.30:9999
+10/04/2026-20:49:09.605915  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:09.606619  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:09.606670  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:09.606670  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:09.813637  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:09.813637  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:10.021970  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:10.021970  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:10.438234  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:10.438234  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:11.317973  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:11.317973  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:12.610281  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:12.610742  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:12.610742  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:12.614752  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:49280 -> 192.168.50.30:9999
+10/04/2026-20:49:12.814328  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:12.814328  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:13.222522  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:13.222522  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:13.622268  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:49280 -> 192.168.50.30:9999
+10/04/2026-20:49:14.070288  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:14.070288  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:14.646951  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:49280 -> 192.168.50.30:9999
+10/04/2026-20:49:15.733832  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:15.733832  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:18.998342  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:18.998342  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:25.909905  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:25.909905  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:39.222185  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:49:39.222185  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:50:05.333856  [Drop] [**] [1:9100001:1] LOCAL IPS TEST - blocked ATTACK string to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999
+10/04/2026-20:50:05.333856  [**] [1:9100002:1] LOCAL IPS TEST - observed traffic to port 9999 [**] [Classification: (null)] [Priority: 3] {TCP} 192.168.50.99:34798 -> 192.168.50.30:9999

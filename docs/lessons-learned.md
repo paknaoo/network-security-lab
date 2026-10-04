@@ -1,6 +1,6 @@
 # Lessons Learned
 
-This document captures interview-ready, per-concept takeaways as they are encountered throughout the project. Each entry follows the same structure: what was previously unclear, what the exercise revealed, and a concise, interview-ready explanation.
+This document captures per-concept takeaways as they are encountered throughout the project. Each entry follows the same structure: what was previously unclear, what the exercise revealed, and a concise takeaway.
 
 Entries are added as the corresponding phase is completed — this file has no fixed table of contents in advance, since the concepts worth recording only become clear once the work is done.
 
@@ -16,7 +16,7 @@ Entries are added as the corresponding phase is completed — this file has no f
 
 **What the exercise revealed:** after installing Suricata and pulling ET Open once, the sensor needs no outbound traffic at all for normal operation — it works entirely passively, listening only. The temporary firewall rule used for bootstrap (apt + `suricata-update`) was deliberately disabled, not deleted, once installation was complete — it remains a documented, inactive artefact in the ruleset, to be enabled manually only for the duration of future rule updates.
 
-**Interview-ready explanation:** A security appliance such as an IDS sensor should default to zero standing egress paths to the internet — the less standing egress it has, the smaller its attack surface if compromised. Rather than maintaining a permanent FQDN allowlist, I keep the firewall rule disabled by default and enable it manually only for the duration of a one-off rule update, which gives an explicit, controlled time window instead of a permanent outbound channel.
+**Takeaway:** A security appliance such as an IDS sensor should default to zero standing egress paths to the internet — the less standing egress it has, the smaller its attack surface if compromised. Rather than maintaining a permanent FQDN allowlist, I keep the firewall rule disabled by default and enable it manually only for the duration of a one-off rule update, which gives an explicit, controlled time window instead of a permanent outbound channel.
 
 ---
 
@@ -28,7 +28,7 @@ Entries are added as the corresponding phase is completed — this file has no f
 
 **What the exercise revealed:** two separate issues. First, a promiscuous tap on a shared segment (`ens33` on VMnet11 OUTSIDE) captures all traffic on that segment, not just the traffic of interest — ambient traffic from other hosts will appear in the same log unless explicitly filtered out. Second, Suricata does not write an event to `eve.json` immediately per packet — it groups traffic into a "flow" and writes the event only once that flow closes or times out, which for a short ICMP exchange introduced a multi-minute gap between the actual ping and the corresponding log line.
 
-**Interview-ready explanation:** Suricata's `eve.json` is not a real-time, per-packet feed — it's largely flow-oriented, so a flow event is written only after the flow closes or times out, and its `timestamp` reflects when the record was written, not when the traffic happened. For accurate evidence or time correlation, I look at the flow's own `flow.start`/`flow.end` fields rather than the top-level `timestamp`. Separately, on a promiscuous tap covering a shared segment, I isolate the traffic of interest — by noting a log offset before the test and filtering by protocol/host afterwards — rather than assuming every logged event belongs to my test.
+**Takeaway:** Suricata's `eve.json` is not a real-time, per-packet feed — it's largely flow-oriented, so a flow event is written only after the flow closes or times out, and its `timestamp` reflects when the record was written, not when the traffic happened. For accurate evidence or time correlation, I look at the flow's own `flow.start`/`flow.end` fields rather than the top-level `timestamp`. Separately, on a promiscuous tap covering a shared segment, I isolate the traffic of interest — by noting a log offset before the test and filtering by protocol/host afterwards — rather than assuming every logged event belongs to my test.
 
 ---
 
@@ -111,6 +111,19 @@ Entries are added as the corresponding phase is completed — this file has no f
 **What the exercise revealed:** the cause was not too low a threshold value, but the counting logic itself — `flow:stateless` counted a single stalled connection's SYN retransmissions as separate hits, and `track by_src` did not distinguish many targets (a scan) from one target many times (retransmissions). A genuine scan and a blocked connection looked identical to a rule that only looked at the packet count from a single source. The fix (flow context + a narrower window) eliminated the dominant source of FPs, but did not add structural destination-diversity awareness — the remaining gap (a low-and-slow scan) was named explicitly and deferred to a separate, complementary rule rather than hidden.
 
 **Takeaway:** a threshold rule's false alarm is most often a problem of matching logic (what is counted, and in what context), not of the threshold value itself — and honest tuning names the remaining gaps rather than pretending one change solves everything.
+
+---
+
+## Inline/IPS Mode Is a Different Position in the Network, Not Just a Configuration Flag
+
+**Phase:** Phase 07 — IDS → IPS Transition
+
+**What was previously unclear:** whether moving from IDS to IPS is a configuration change (a flag/mode) or an architectural change.
+
+**What the exercise revealed:** for six phases Suricata was a passive observer on two taps — traffic didn't pass through it, only a copy, so it couldn't block anything. IPS requires packets to actually pass through the engine (here: through the NFQUEUE queue), which places the engine on the traffic path and makes it a potential point of failure. Implementing inline operation for transit traffic would require re-architecting the topology; a narrower, isolated path (traffic directed at Suricata itself) was deliberately chosen, demonstrating the identical drop/accept mechanism without risk to the working environment. Splitting rules into `drop` (low false-positive, auto-block) and `alert` (observation) is not a syntax detail but an operational decision about what is allowed to automatically interfere with traffic.
+
+**Takeaway:** an IDS observes a copy of traffic and can be wrong without consequences for connectivity; an IPS sits on the traffic path, and any error it makes (a false positive in `drop` mode) genuinely blocks legitimate traffic — which is why only rules with a proven, low false-positive risk qualify for `drop` mode, and the rest stay in `alert`.
+
 ---
 
 <!--
@@ -124,5 +137,5 @@ Entry template:
 
 **What the exercise revealed:** ...
 
-**Interview-ready explanation:** ...
+**Takeaway:** ...
 -->

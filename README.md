@@ -82,7 +82,7 @@ flowchart TD
     SURI_LAN -.-> ENGINE
 ```
 
-> This diagram will be finalised in Phase 09 to reflect the fully implemented and validated lab. See [Phase 00 — Planning](docs/phase-00-planning.md) for the full architecture rationale and threat model.
+> This diagram will be finalised in Phase 08 to reflect the fully implemented and validated lab. See [Phase 00 — Planning](docs/phase-00-planning.md) for the full architecture rationale and threat model.
 
 ---
 
@@ -129,10 +129,10 @@ This section will be updated as each phase is completed and validated.
 - [x] Phase 04 — Evidence correlation (pfSense + Suricata + Hubble UI).
 - [x] Phase 05 — Multi-event manual timeline reconstruction.
 - [x] Phase 06 — Full incident investigations, including a false positive.
-- [ ] Phase 07 — IDS → IPS transition with rule tuning.
-- [ ] Phase 09 — Final validation, architecture diagram, README, CV talking points.
+- [x] Phase 07 — IDS → IPS transition with rule tuning.
+- [ ] Phase 08 — Final validation, architecture diagram, README, CV talking points.
 
-Phase 08 (SIEM) is deliberately skipped — see [Phase 00 — Planning](docs/phase-00-planning.md#phase-08--skipped).
+SIEM (Wazuh) was deliberately excluded from scope due to host RAM budget constraints — see [Phase 00 — Planning](docs/phase-00-planning.md#project-goal-and-relationship-to-k8s-cilium-lab).
 
 ---
 
@@ -150,6 +150,7 @@ Implementation details are organised by project phase. Phases are listed in plan
    - [Case 1 — Multi-Stage Reconnaissance and Access Attempt](docs/incident-reports/case-01-multistage-recon.md)
    - [Case 2 — DNS Exfiltration Pattern and Lateral Movement](docs/incident-reports/case-02-dns-lateral.md)
    - [Case 3 — False Positive Analysis and Rule Tuning](docs/incident-reports/case-03-false-positive-tuning.md)
+8. [Phase 07 — IDS → IPS Transition](docs/phase-07-ids-ips-transition.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -175,13 +176,15 @@ Phase 00 is planning and research only and is not subject to formal validation �
 
 **Phase 06 — Full Incident Investigations:** all criteria met — two SOC/IR-style incident reports (multi-stage recon/access, and DNS exfiltration pattern + lateral movement), each applying a three-tier Observed/Assessed/Not-observed confidence discipline with an explicit attempted-vs-successful distinction; plus a full false-positive tuning cycle on `sid:9000001` (root cause → `rev:2` fix → live validation confirming the genuine scan still alerts while the blocked-connection false positive is eliminated). Full detail in [Phase 06](docs/phase-06-incident-investigations.md#validation-results).
 
+**Phase 07 — IDS → IPS Transition:** all criteria met — Suricata run inline via NFQUEUE on an isolated test path, confirmed blocking real traffic (not just alerting) with a content-based `drop` rule while a sibling `alert` rule and benign traffic passed through, verified in one time window (engine verdict totals: 52 dropped, 20 accepted); the main IDS service and SSH stayed up throughout. Full detail in [Phase 07](docs/phase-07-ids-ips-transition.md#validation-results).
+
 Further phases will be added here as they are completed.
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phases 00–06 (planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, multi-event timeline reconstruction, and full incident investigations) are complete; Phase 07 (IDS → IPS transition) is next.
+This project is **in progress**. Phases 00–07 (planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, multi-event timeline reconstruction, full incident investigations, and the IDS → IPS transition) are complete; Phase 08 (final validation, architecture diagram, README, CV talking points) is the last remaining phase.
 
 ---
 

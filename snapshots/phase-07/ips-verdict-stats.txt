@@ -1,0 +1,3 @@
+Suricata NFQUEUE engine final stats (from -q 0 shutdown):
+Treated: Pkts 72, Bytes 4641, Errors 0
+Verdict: Accepted 20, Dropped 52, Replaced 0
