@@ -29,60 +29,47 @@ This lab observes infrastructure provisioned in a separate portfolio project, [k
 
 ## Architecture
 
-The following diagram provides a high-level overview of the lab environment and its relationship to the existing Kubernetes networking lab.
+The diagram below shows the lab as built and validated — in particular, the two attacker vantage points that were tested and the three independent evidence sources used to investigate them. No single source sees everything: that gap is the central finding of the project.
 
 ```mermaid
-flowchart TD
-
-    HOST[Windows Host]
-    VMW[VMware Workstation]
-
-    subgraph NAT["VMnet8 — NAT / WAN"]
-        INTERNET[Internet]
-    end
+flowchart TB
 
     subgraph OUTSIDE["VMnet11 — OUTSIDE (192.168.50.0/24)"]
-        MGMT[mgmt]
-        ATTACKER[attacker]
-        SURI_OUT[suricata eth0 - tap]
+        MGMT["mgmt · .10<br/>management, sole SSH initiator"]
+        ATTACKER["attacker · .99<br/>north-south attacker"]
     end
 
-    subgraph FIREWALL["pfSense"]
-        PFSENSE[Firewall / Router]
-    end
+    PFSENSE["pfSense · OUTSIDE .254 / LAN .254"]
 
     subgraph LAN["VMnet10 — Kubernetes LAN (10.10.10.0/24)"]
-        MASTER[k8s-master]
-        WORKER1[k8s-worker1]
-        WORKER2[k8s-worker2]
-        SURI_LAN[suricata eth1 - tap]
+        NODES["k8s-master .20 · worker1 .21 · worker2 .22<br/>service VIPs .200 / .201 (L2 / BGP)"]
+        subgraph CLUSTER["Cilium CNI workloads"]
+            ATTACKERPOD["attacker-pod<br/>east-west attacker (unprivileged)"]
+            TARGET["phase03 targets<br/>webserver / internal-service"]
+        end
     end
 
-    subgraph IDS["Suricata VM"]
-        ENGINE[Suricata engine]
+    subgraph EVIDENCE["Three independent evidence sources"]
+        PF_LOG["1 · pfSense filterlog<br/>what crossed the segment boundary"]
+        SURICATA["2 · Suricata engine (dual af-packet tap)<br/>ens33 pre-filter: attempts, pre-decision<br/>ens34 post-filter: permitted + VXLAN envelope only<br/>ET Open + 6 custom rules · IDS 01–06 · inline/NFQUEUE 07"]
+        HUBBLE["3 · Cilium Hubble (eBPF)<br/>pod identity + DROPPED/FORWARDED verdict<br/>Cilium datapath only"]
     end
 
-    HOST --> VMW
-    VMW --> MGMT
-    VMW --> ATTACKER
-    VMW --> ENGINE
-    VMW --> PFSENSE
-    VMW --> MASTER
-    VMW --> WORKER1
-    VMW --> WORKER2
+    MGMT -->|"WireGuard full tunnel"| PFSENSE
+    ATTACKER -.->|"N-S attack: scan / HTTP / DNS / SSH"| PFSENSE
+    PFSENSE --> NODES
+    ATTACKERPOD -.->|"E-W attack: cross-namespace"| TARGET
 
-    INTERNET --> PFSENSE
-    ATTACKER -.->|attack traffic| PFSENSE
-    MGMT --> PFSENSE
-    PFSENSE --> MASTER
-    PFSENSE --> WORKER1
-    PFSENSE --> WORKER2
+    PFSENSE -. observed by .-> PF_LOG
+    OUTSIDE -. tapped by .-> SURICATA
+    LAN -. tapped by .-> SURICATA
+    CLUSTER -. observed by .-> HUBBLE
 
-    SURI_OUT -.-> ENGINE
-    SURI_LAN -.-> ENGINE
+    classDef evidence fill:#1f2937,stroke:#60a5fa,color:#e5e7eb
+    class PF_LOG,SURICATA,HUBBLE evidence
 ```
 
-> This diagram will be finalised in Phase 08 to reflect the fully implemented and validated lab. See [Phase 00 — Planning](docs/phase-00-planning.md) for the full architecture rationale and threat model.
+> See [Phase 00 — Planning](docs/phase-00-planning.md#architecture-diagram) for the original planning diagram and the full architecture rationale and threat model, and [Phase 08](docs/phase-08-final-validation.md#as-built-architecture-diagram) for the as-built diagram in context.
 
 ---
 
@@ -130,7 +117,7 @@ This section will be updated as each phase is completed and validated.
 - [x] Phase 05 — Multi-event manual timeline reconstruction.
 - [x] Phase 06 — Full incident investigations, including a false positive.
 - [x] Phase 07 — IDS → IPS transition with rule tuning.
-- [ ] Phase 08 — Final validation, architecture diagram, README, CV talking points.
+- [x] Phase 08 — Final validation, architecture diagram, README, CV talking points.
 
 SIEM (Wazuh) was deliberately excluded from scope due to host RAM budget constraints — see [Phase 00 — Planning](docs/phase-00-planning.md#project-goal-and-relationship-to-k8s-cilium-lab).
 
@@ -151,6 +138,7 @@ Implementation details are organised by project phase. Phases are listed in plan
    - [Case 2 — DNS Exfiltration Pattern and Lateral Movement](docs/incident-reports/case-02-dns-lateral.md)
    - [Case 3 — False Positive Analysis and Rule Tuning](docs/incident-reports/case-03-false-positive-tuning.md)
 8. [Phase 07 — IDS → IPS Transition](docs/phase-07-ids-ips-transition.md)
+9. [Phase 08 — Final Validation, Architecture Diagram, CV Talking Points](docs/phase-08-final-validation.md)
 
 The detailed lessons-learned log, capturing concept-level takeaways as they are encountered, is maintained in:
 
@@ -178,13 +166,28 @@ Phase 00 is planning and research only and is not subject to formal validation �
 
 **Phase 07 — IDS → IPS Transition:** all criteria met — Suricata run inline via NFQUEUE on an isolated test path, confirmed blocking real traffic (not just alerting) with a content-based `drop` rule while a sibling `alert` rule and benign traffic passed through, verified in one time window (engine verdict totals: 52 dropped, 20 accepted); the main IDS service and SSH stayed up throughout. Full detail in [Phase 07](docs/phase-07-ids-ips-transition.md#validation-results).
 
-Further phases will be added here as they are completed.
+**Phase 08 — Final Validation:** every prior phase re-checked against its own criteria and the live repository state — all pass. Two Phase 00 criteria carried honest scope notes rather than silent passes: attacks were documented as inline commands in the phase docs rather than committed as a full script harness (one representative script is committed and syntax-clean), and Phase 06 has no separate snapshots by design (its investigations are built on Phase 05 evidence). The as-built architecture diagram and CV talking points were produced in this phase. Full detail in [Phase 08](docs/phase-08-final-validation.md#final-re-validation).
 
 ---
 
 ## Project Status
 
-This project is **in progress**. Phases 00–07 (planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, multi-event timeline reconstruction, full incident investigations, and the IDS → IPS transition) are complete; Phase 08 (final validation, architecture diagram, README, CV talking points) is the last remaining phase.
+This project is **complete**. All phases (00–08) are implemented, validated, and documented: planning, Suricata deployment, traffic analysis, five detection scenarios, evidence correlation, multi-event timeline reconstruction, full incident investigations, the IDS → IPS transition, and final validation.
+
+---
+
+## Talking Points
+
+Each point below is backed by committed evidence in this repository, not by assertion.
+
+- **Dual-tap Suricata IDS** (v8.0.6, `af-packet`) positioned to observe traffic both before and after a pfSense firewall decision — demonstrating the pre- vs. post-filter sensor-placement trade-off with captured evidence from both vantage points.
+- **Six custom Suricata signatures** supplementing ET Open, including a full false-positive tuning cycle (root cause → rule revision → live before/after validation) that eliminated a 10/11 false-positive rate without losing true-positive detection.
+- **Manual, multi-source incident correlation** across three independent evidence sources (pfSense, Suricata, Cilium Hubble) without a SIEM — reconstructing second-level timelines and quantifying the analyst effort involved as a concrete argument for correlation automation at scale.
+- **Real incident diagnosis under ambiguity** — two conflicting CiliumNetworkPolicies on a shared pod, overlapping in time with a genuine L2-announcement infrastructure fault, resolved by systematic hypothesis elimination across ARP, firewall state, packet capture, and eBPF flow logs.
+- **IDS → inline IPS transition** (NFQUEUE) on an isolated path, confirming real packet blocking with documented drop-vs-alert rule-qualification criteria, while keeping the production IDS and management access untouched.
+- **A consistent validation discipline throughout** — every quoted figure verified programmatically against source evidence, with limitations and corrections stated openly rather than quietly cleaned up.
+
+See [Phase 08](docs/phase-08-final-validation.md#cv-talking-points) for the same points tied to their specific phases.
 
 ---
 

@@ -126,6 +126,18 @@ Entries are added as the corresponding phase is completed — this file has no f
 
 ---
 
+## Pre-Filter vs. Post-Filter IDS Placement Answers Two Different Questions
+
+**Phase:** Phase 08 — Final Validation (concept running through Phases 01–05)
+
+**What was previously unclear:** whether sensor placement relative to the firewall is a detail or a design decision with real consequences for what evidence exists after an incident.
+
+**What the exercise revealed:** the OUTSIDE tap (`ens33`, pre-filter) recorded every attack attempt regardless of whether pfSense blocked it — which is what let a blocked SSH attempt still be correlated against the pfSense block log. The LAN tap (`ens34`, post-filter) only ever saw what the firewall permitted, plus east-west traffic the perimeter never touches. A blocked packet never reaches the LAN segment, so a LAN-only sensor would have no record of the attempt at all.
+
+**Takeaway:** an IDS in front of the firewall answers "what was attempted"; one behind it answers "what got through". These are different investigative questions, and which one a sensor can answer is fixed by where it sits — not something that can be tuned later in software.
+
+---
+
 <!--
 Entry template:
 
